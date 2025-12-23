@@ -20,11 +20,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ConvexAuthNextjsServerProvider>
-        <body className={`${includeSans.className} antialiased`}>
+      <body className={`${includeSans.className} antialiased`}>
+        <ConvexAuthNextjsServerProvider>
           <ConvexClientProvider>{children}</ConvexClientProvider>
-        </body>
-      </ConvexAuthNextjsServerProvider>
+        </ConvexAuthNextjsServerProvider>
+      </body>
     </html>
   );
 }
