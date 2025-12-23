@@ -1,7 +1,7 @@
 "use client";
 
 import { useSession } from "@/lib/auth/client";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 
 export default function Page() {
   const session = useSession();
@@ -15,7 +15,7 @@ export default function Page() {
     return <div className="text-red-500">{session.error.message}</div>;
   }
 
-  console.log(session.data)
+  console.log(session.data);
 
   return (
     <form className="mb-3 w-96" onSubmit={handleSubmittedFiles}>
@@ -41,7 +41,14 @@ export default function Page() {
   );
 
   async function handleSubmittedFiles() {
-    console.log("file: ", syllabuses);
+    if (!syllabuses) {
+      return;
+    }
+
+    if (!session.data?.user.id) {
+      throw new Error("Invalid state found");
+    }
+
     setSyllabuses(null);
   }
 }
